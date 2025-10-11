@@ -1,0 +1,643 @@
+/* ================================================================
+   TABSAVER - COMPLETE STYLESHEET
+   ================================================================
+   
+   This CSS file contains all the styling for the TabSaver extension.
+   We're using plain CSS (no frameworks) for better performance and control.
+   
+   Main Sections:
+   1. Reset & Base Styles - Browser default overrides
+   2. Header - Logo and dark mode toggle
+   3. Main Content - Input and button styling
+   4. Session Cards - List of saved sessions
+   5. Modal - Rename dialog popup
+   6. Dark Mode - Styles for dark theme
+   7. Animations - Smooth transitions and effects
+   
+   Color Scheme:
+   - Primary Blue: #3b82f6
+   - Gray Scale: #111827 (dark) to #f9fafb (light)
+   - Success Green: #10b981
+   - Error Red: #ef4444
+   ================================================================ */
+
+/* ================================================================
+   RESET & BASE STYLES
+   ================================================================
+   These styles reset browser defaults and set up basic styling.
+   This ensures consistency across different browsers.
+*/
+
+/* Universal selector - applies to all elements */
+* {
+  margin: 0;           /* Remove default margins */
+  padding: 0;          /* Remove default padding */
+  box-sizing: border-box;  /* Include padding/border in element width */
+}
+
+/* Body - Main container for our extension popup */
+body {
+  width: 420px;        /* Fixed width for the popup */
+  height: 600px;       /* Fixed height for the popup */
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', sans-serif;
+  /* ^^ Uses system fonts for native look on each OS */
+  background: #ffffff;  /* White background */
+  color: #111827;      /* Dark text color */
+  overflow: hidden;    /* Prevent scrollbars on body */
+}
+
+/* ================================================================
+   UTILITY CLASSES
+   ================================================================
+   Small helper classes that can be reused throughout the app
+*/
+
+/* Hide elements completely (used for empty states and modal) */
+.hidden {
+  display: none !important;  /* !important ensures it overrides other styles */
+}
+
+/* Standard icon size - used for all SVG icons */
+.icon {
+  width: 20px;
+  height: 20px;
+}
+
+/* ================================================================
+   HEADER SECTION
+   ================================================================
+   The header contains the app logo and dark mode toggle button.
+   It stays fixed at the top of the popup.
+*/
+
+.header {
+  background: #ffffff;               /* White background */
+  border-bottom: 1px solid #e5e7eb; /* Subtle gray border */
+  padding: 16px 20px;                /* Space around content */
+}
+
+/* Flexbox container for header content */
+.header-content {
+  display: flex;                      /* Use flexbox layout */
+  align-items: center;                /* Vertically center items */
+  justify-content: space-between;     /* Space between left and right sides */
+}
+
+/* Left side of header (logo + title) */
+.header-left {
+  display: flex;           /* Use flexbox */
+  align-items: center;     /* Vertically center */
+  gap: 12px;              /* Space between icon and title */
+}
+
+/* Square badge containing the folder icon */
+.icon-badge {
+  width: 32px;             /* Square dimensions */
+  height: 32px;
+  background: #3b82f6;     /* Blue background */
+  border-radius: 8px;      /* Rounded corners */
+  display: flex;           /* Use flexbox to center icon */
+  align-items: center;     /* Center vertically */
+  justify-content: center; /* Center horizontally */
+}
+
+/* Make the icon inside the badge white */
+.icon-badge .icon {
+  stroke: #ffffff;
+}
+
+/* Main "TabSaver" title */
+.title {
+  font-size: 18px;        /* Larger text */
+  font-weight: 600;       /* Semi-bold */
+  color: #111827;         /* Dark gray */
+}
+
+/* Dark mode toggle button (icon button) */
+.icon-btn {
+  padding: 8px;                        /* Space around icon */
+  background: none;                    /* Transparent background */
+  border: none;                        /* Remove default button border */
+  border-radius: 8px;                  /* Rounded corners */
+  cursor: pointer;                     /* Show pointer on hover */
+  transition: background-color 0.2s;   /* Smooth background change */
+}
+
+/* Hover effect for icon button */
+.icon-btn:hover {
+  background: #f3f4f6;  /* Light gray background on hover */
+}
+
+/* Icon color inside the button */
+.icon-btn .icon {
+  stroke: #4b5563;  /* Medium gray */
+}
+
+/* ================================================================
+   MAIN CONTENT AREA
+   ================================================================
+   The scrollable area containing the input field and sessions list.
+   Height is calculated: 100% minus 72px (header height)
+*/
+
+.main-content {
+  padding: 20px;                    /* Space around content */
+  height: calc(100% - 72px - 48px); /* Full height minus header and footer */
+  overflow-y: auto;                 /* Enable vertical scrolling */
+}
+
+/* ================================================================
+   SAVE SESSION SECTION
+   ================================================================
+   Contains the input field and button for saving new sessions
+*/
+
+.save-section {
+  margin-bottom: 24px;  /* Space below this section */
+}
+
+/* Label above the input field */
+.label {
+  display: block;           /* Takes full width */
+  font-size: 14px;          /* Small text */
+  font-weight: 500;         /* Medium weight */
+  color: #374151;           /* Dark gray */
+  margin-bottom: 8px;       /* Space below label */
+}
+
+/* Text input field styling */
+.input {
+  width: 100%;                    /* Full width */
+  padding: 10px 16px;             /* Space inside input */
+  background: #ffffff;            /* White background */
+  border: 1px solid #d1d5db;      /* Gray border */
+  border-radius: 8px;             /* Rounded corners */
+  font-size: 14px;                /* Text size */
+  color: #111827;                 /* Text color */
+  transition: border-color 0.2s, box-shadow 0.2s;  /* Smooth transitions */
+}
+
+/* Placeholder text color (the hint text) */
+.input::placeholder {
+  color: #9ca3af;  /* Light gray */
+}
+
+/* When user clicks on the input (focus state) */
+.input:focus {
+  outline: none;                     /* Remove default browser outline */
+  border-color: #3b82f6;             /* Blue border */
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);  /* Blue glow effect */
+}
+
+.btn {
+  width: 100%;
+  padding: 10px 16px;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: background-color 0.2s;
+}
+
+.btn-primary {
+  background: #3b82f6;
+  color: #ffffff;
+  margin-top: 12px;
+}
+
+.btn-primary:hover {
+  background: #2563eb;
+}
+
+.btn-secondary {
+  background: #f3f4f6;
+  color: #374151;
+}
+
+.btn-secondary:hover {
+  background: #e5e7eb;
+}
+
+button:active {
+  transform: scale(0.97);
+}
+
+/* Divider */
+.divider {
+  height: 1px;
+  background: #e5e7eb;
+  margin: 20px 0;
+}
+
+/* Sessions Section */
+.sessions-section {
+  margin-bottom: 20px;
+}
+
+.section-title {
+  font-size: 14px;
+  font-weight: 500;
+  color: #374151;
+  margin-bottom: 12px;
+}
+
+.sessions-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* Session Card */
+.session-card {
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  padding: 16px;
+  cursor: pointer;
+  transition: background-color 0.15s;
+}
+
+.session-card:hover {
+  background-color: #f9fafb;
+}
+
+.session-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.session-info {
+  flex: 1;
+  min-width: 0;
+  padding-right: 12px;
+}
+
+.session-name {
+  font-size: 14px;
+  font-weight: 500;
+  color: #111827;
+  margin-bottom: 4px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.session-meta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  color: #6b7280;
+}
+
+.tab-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 8px;
+  background: #eff6ff;
+  color: #2563eb;
+  border-radius: 4px;
+  font-weight: 500;
+}
+
+.session-actions {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.action-btn {
+  padding: 8px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+/* Open button - blue by default */
+.action-btn.always-visible {
+  background: #3b82f6;
+}
+
+.action-btn.always-visible .icon {
+  stroke: #ffffff;
+}
+
+.action-btn.always-visible:hover {
+  background: #2563eb;
+}
+
+/* Rename button - light gray by default */
+.action-btn:not(.always-visible):not(.delete) {
+  background: #f3f4f6;
+}
+
+.action-btn:not(.always-visible):not(.delete):hover {
+  background: #3b82f6;
+}
+
+.action-btn:not(.always-visible):not(.delete):hover .icon {
+  stroke: #ffffff;
+}
+
+/* Delete button - light gray by default */
+.action-btn.delete {
+  background: #f3f4f6;
+}
+
+.action-btn.delete:hover {
+  background: #ef4444;
+}
+
+.action-btn.delete:hover .icon {
+  stroke: #ffffff;
+}
+
+.action-btn .icon {
+  width: 16px;
+  height: 16px;
+  stroke: #6b7280;
+}
+
+/* Empty State */
+.empty-state {
+  text-align: center;
+  padding: 48px 0;
+}
+
+.empty-icon {
+  width: 64px;
+  height: 64px;
+  background: #f3f4f6;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 16px;
+}
+
+.empty-icon .icon {
+  width: 32px;
+  height: 32px;
+  stroke: #9ca3af;
+}
+
+.empty-title {
+  font-size: 14px;
+  font-weight: 500;
+  color: #4b5563;
+  margin-bottom: 4px;
+}
+
+.empty-subtitle {
+  font-size: 12px;
+  color: #6b7280;
+}
+
+/* Modal */
+.modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 50;
+  backdrop-filter: blur(8px);
+  animation: fadeIn 0.2s ease-out;
+}
+
+.modal-content {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 24px;
+  width: 320px;
+  margin: 0 16px;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+  animation: slideUp 0.2s ease-out;
+}
+
+.modal-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: #111827;
+  margin-bottom: 16px;
+}
+
+.modal-actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.modal-actions .btn {
+  flex: 1;
+  width: auto; /* Override any width settings */
+  min-width: 0; /* Allow flexbox to control width */
+  margin-top: 0; /* Remove any margin from buttons in modal */
+}
+
+/* Feedback Toast */
+.feedback-toast {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 16px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  z-index: 100;
+  animation: slideDown 0.3s ease-out;
+}
+
+.feedback-toast.success {
+  background: #10b981;
+  color: #ffffff;
+}
+
+.feedback-toast.error {
+  background: #ef4444;
+  color: #ffffff;
+}
+
+.feedback-toast .icon {
+  width: 16px;
+  height: 16px;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(156, 163, 175, 0.3);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(156, 163, 175, 0.5);
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Dark Mode */
+.dark body {
+  background: #111827;
+  color: #ffffff;
+}
+
+.dark .header {
+  background: #1f2937;
+  border-bottom-color: #374151;
+}
+
+.dark .title {
+  color: #ffffff;
+}
+
+.dark .icon-btn:hover {
+  background: #374151;
+}
+
+.dark .icon-btn .icon {
+  stroke: #9ca3af;
+}
+
+.dark .label {
+  color: #d1d5db;
+}
+
+.dark .input {
+  background: #1f2937;
+  border-color: #4b5563;
+  color: #ffffff;
+}
+
+.dark .divider {
+  background: #374151;
+}
+
+.dark .section-title {
+  color: #d1d5db;
+}
+
+.dark .session-card {
+  border-color: #374151;
+}
+
+.dark .session-card:hover {
+  background-color: #1f2937;
+}
+
+.dark .session-name {
+  color: #ffffff;
+}
+
+.dark .session-meta {
+  color: #9ca3af;
+}
+
+.dark .tab-badge {
+  background: rgba(37, 99, 235, 0.2);
+  color: #60a5fa;
+}
+
+.dark .action-btn:not(.always-visible):not(.delete) {
+  background: #374151;
+}
+
+.dark .action-btn:not(.always-visible):not(.delete):hover {
+  background: #3b82f6;
+}
+
+.dark .action-btn.delete {
+  background: #374151;
+}
+
+.dark .action-btn.delete:hover {
+  background: #ef4444;
+}
+
+.dark .empty-icon {
+  background: #1f2937;
+}
+
+.dark .empty-title {
+  color: #9ca3af;
+}
+
+.dark .empty-subtitle {
+  color: #6b7280;
+}
+
+.dark .modal-content {
+  background: #1f2937;
+}
+
+.dark .modal-title {
+  color: #ffffff;
+}
+
+.dark .btn-secondary {
+  background: #374151;
+  color: #d1d5db;
+}
+
+.dark .btn-secondary:hover {
+  background: #4b5563;
+}
+
+.dark ::-webkit-scrollbar-thumb {
+  background: rgba(75, 85, 99, 0.3);
+}
+
+.dark ::-webkit-scrollbar-thumb:hover {
+  background: rgba(75, 85, 99, 0.5);
+}
+
+/* Footer dark mode */
+.dark footer {
+  border-top-color: #374151;
+  color: #9ca3af;
+}

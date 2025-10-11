@@ -1,0 +1,110 @@
+═══════════════════════════════════════════════════════════════
+  📁 TABSAVER - INSTALLATION INSTRUCTIONS
+═══════════════════════════════════════════════════════════════
+
+⚠️  IMPORTANT: Follow these steps in order!
+
+═══════════════════════════════════════════════════════════════
+  STEP 1: Generate the Icon (REQUIRED!)
+═══════════════════════════════════════════════════════════════
+
+The icon-generator.html should be open in your browser.
+If not, double-click: icon-generator.html
+
+1. Click the "Download icon.png" button
+2. Save the file as: icon.png
+3. Move it into the: icons/ folder
+   (The same folder that has icon.svg)
+
+Without this icon, Chrome won't load the extension!
+
+═══════════════════════════════════════════════════════════════
+  STEP 2: Load Extension in Chrome
+═══════════════════════════════════════════════════════════════
+
+1. Open Chrome browser
+2. Type in address bar: chrome://extensions/
+3. Toggle ON: "Developer mode" (top-right corner)
+4. Click: "Load unpacked" button
+5. Select this folder: TabSaver
+6. Click: "Select Folder"
+
+You should see "TabSaver" in your extensions list!
+
+═══════════════════════════════════════════════════════════════
+  STEP 3: Pin the Extension (Optional but Recommended)
+═══════════════════════════════════════════════════════════════
+
+1. Click the puzzle piece icon (🧩) in Chrome toolbar
+2. Find "TabSaver" in the list
+3. Click the pin icon (📌) next to it
+
+Now the TabSaver icon will always be visible!
+
+═══════════════════════════════════════════════════════════════
+  STEP 4: Start Using TabSaver! 🎉
+═══════════════════════════════════════════════════════════════
+
+1. Click the TabSaver icon in your toolbar
+2. Enter a session name (or leave blank)
+3. Click "Save Current Tabs"
+4. Your tabs are saved!
+
+To restore: Click a session's green "Open" button
+
+═══════════════════════════════════════════════════════════════
+  TROUBLESHOOTING
+═══════════════════════════════════════════════════════════════
+
+Problem: "Extension won't load"
+Solution: Make sure icon.png exists in the icons/ folder
+
+Problem: "Could not load manifest"
+Solution: Check that manifest.json exists in the TabSaver folder
+
+Problem: "No sessions appearing"
+Solution: Save a new session first, or check the console
+         (Right-click extension icon → Inspect → Console)
+
+═══════════════════════════════════════════════════════════════
+  FEATURES OVERVIEW
+═══════════════════════════════════════════════════════════════
+
+✅ Save Current Tabs - Capture all open tabs
+✅ Restore Sessions - Reopen saved tab groups
+✅ Rename Sessions - Edit session names
+✅ Delete Sessions - Remove unwanted sessions
+✅ Dark Mode - Toggle dark/light theme
+✅ Timestamps - See when sessions were saved
+✅ Tab Counter - View number of tabs per session
+
+═══════════════════════════════════════════════════════════════
+  FILES INCLUDED
+═══════════════════════════════════════════════════════════════
+
+✓ manifest.json          - Extension configuration
+✓ popup.html            - User interface
+✓ popup.js              - Core functionality
+✓ popup.css             - Custom styles
+✓ background.js         - Service worker
+✓ icons/icon.svg        - Icon source
+✓ icon-generator.html   - Icon creation tool
+✓ README.md            - Full documentation
+✓ QUICK_START.md       - Quick guide
+✓ INSTALL_INSTRUCTIONS.txt - This file
+
+⚠️ icons/icon.png       - YOU NEED TO GENERATE THIS!
+
+═══════════════════════════════════════════════════════════════
+  NEED MORE HELP?
+═══════════════════════════════════════════════════════════════
+
+→ Read QUICK_START.md for a visual guide
+→ Read README.md for detailed documentation
+→ Check the code comments in popup.js for technical details
+
+═══════════════════════════════════════════════════════════════
+
+Enjoy using TabSaver! 🚀
+
+═══════════════════════════════════════════════════════════════

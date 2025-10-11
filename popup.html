@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TabSaver</title>
+  <!-- Link to our custom CSS file for styling -->
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  
+  <!-- 
+    ========================================
+    TABSAVER CHROME EXTENSION
+    ========================================
+    This is a Chrome extension that helps users save and manage their browser tabs.
+    
+    Features:
+    - Save current open tabs as a session
+    - Restore saved sessions by reopening all tabs
+    - Rename sessions to organize them better
+    - Delete sessions that are no longer needed
+    - Dark mode support for better eye comfort
+    
+    Structure:
+    1. Header - Contains the logo and dark mode toggle
+    2. Main Content - Input field and save button
+    3. Sessions List - Displays all saved sessions
+    4. Rename Modal - Popup dialog for renaming sessions
+  -->
+  
+  <!-- ========================================
+       HEADER SECTION
+       ========================================
+       This section displays the app logo and title at the top.
+       It also includes a dark mode toggle button.
+  -->
+  <header class="header">
+    <div class="header-content">
+      <!-- Left side: Logo and title -->
+      <div class="header-left">
+        <!-- Icon badge with folder icon (SVG) -->
+        <div class="icon-badge">
+          <svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <!-- Folder icon path - this creates the visual folder shape -->
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 19a2 2 0 01-2-2V7a2 2 0 012-2h4l2 2h4a2 2 0 012 2v1M5 19h14a2 2 0 002-2v-5a2 2 0 00-2-2H9a2 2 0 00-2 2v5a2 2 0 01-2 2z"></path>
+          </svg>
+        </div>
+        <!-- Main title of the extension -->
+        <h1 class="title">TabSaver</h1>
+      </div>
+      
+      <!-- Right side: Dark mode toggle button -->
+      <!-- This button switches between light and dark themes -->
+      <button id="darkModeToggle" class="icon-btn">
+        <!-- Sun icon - shown in dark mode -->
+        <svg id="sunIcon" class="icon hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path>
+        </svg>
+        <!-- Moon icon - shown in light mode (default) -->
+        <svg id="moonIcon" class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path>
+        </svg>
+      </button>
+    </div>
+  </header>
+
+  <!-- ========================================
+       MAIN CONTENT AREA
+       ========================================
+       This is where users interact with the extension.
+       Contains the input field for naming sessions and the save button.
+  -->
+  <main class="main-content">
+    
+    <!-- ========================================
+         SAVE SESSION SECTION
+         ========================================
+         Users enter a session name and click the button to save all current tabs.
+    -->
+    <div class="save-section">
+      <!-- Label for the input field (good accessibility practice) -->
+      <label class="label" for="sessionNameInput">Session Name</label>
+      
+      <!-- Text input where users type the session name -->
+      <!-- If left empty, a default name with timestamp will be generated -->
+      <input 
+        type="text" 
+        id="sessionNameInput" 
+        placeholder="e.g., Work Project, Research" 
+        class="input"
+      >
+      
+      <!-- Button to save all currently open tabs -->
+      <!-- When clicked, it triggers the saveCurrentTabs() function in popup.js -->
+      <button id="saveTabsBtn" class="btn btn-primary">
+        <!-- Download/save icon (SVG) -->
+        <svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-3m-1 4l-3 3m0 0l-3-3m3 3V4"></path>
+        </svg>
+        <span>Save Current Tabs</span>
+      </button>
+    </div>
+
+    <!-- Visual separator line between sections -->
+    <div class="divider"></div>
+
+    <!-- ========================================
+         SAVED SESSIONS LIST
+         ========================================
+         This section displays all previously saved sessions.
+         Sessions are created dynamically using JavaScript.
+    -->
+    <div class="sessions-section">
+      <h2 class="section-title">Saved Sessions</h2>
+      
+      <!-- Container for session cards -->
+      <!-- The JavaScript will add session cards here dynamically -->
+      <div id="sessionsList" class="sessions-list">
+        
+        <!-- Empty State - Only shown when no sessions exist -->
+        <!-- This provides a better user experience than showing nothing -->
+        <div id="emptyState" class="empty-state">
+          <div class="empty-icon">
+            <!-- Folder icon for empty state -->
+            <svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 19a2 2 0 01-2-2V7a2 2 0 012-2h4l2 2h4a2 2 0 012 2v1M5 19h14a2 2 0 002-2v-5a2 2 0 00-2-2H9a2 2 0 00-2 2v5a2 2 0 01-2 2z"></path>
+            </svg>
+          </div>
+          <p class="empty-title">No saved sessions</p>
+          <p class="empty-subtitle">Save your first session to get started</p>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- ========================================
+       FOOTER
+       ========================================
+  -->
+  <footer style="text-align: center; padding: 12px; border-top: 1px solid #e5e7eb; font-size: 11px; color: #6b7280;">
+    Made by <strong style="color: #3b82f6;">Samonwita</strong>
+  </footer>
+
+  <!-- ========================================
+       RENAME MODAL (POPUP DIALOG)
+       ========================================
+       This is a modal dialog that appears when user wants to rename a session.
+       It's hidden by default and shown via JavaScript when needed.
+       The "hidden" class hides it initially using CSS display: none.
+  -->
+  <div id="renameModal" class="modal hidden">
+    <div class="modal-content">
+      <!-- Modal title -->
+      <h3 class="modal-title">Rename Session</h3>
+      
+      <!-- Input field for new session name -->
+      <!-- Pre-filled with current name when modal opens -->
+      <input 
+        type="text" 
+        id="renameInput" 
+        placeholder="Enter new name" 
+        class="input"
+      >
+      
+      <!-- Action buttons -->
+      <div class="modal-actions">
+        <!-- Cancel button - closes modal without saving changes -->
+        <button id="cancelRenameBtn" class="btn btn-secondary">
+          Cancel
+        </button>
+        <!-- Confirm button - saves the new name and updates the session -->
+        <button id="confirmRenameBtn" class="btn btn-primary">
+          Rename
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================
+       JAVASCRIPT FILE
+       ========================================
+       This links to our main JavaScript file that handles all the logic:
+       - Saving tabs to storage
+       - Loading and displaying sessions
+       - Opening, renaming, and deleting sessions
+       - Dark mode functionality
+  -->
+  <script src="popup.js"></script>
+</body>
+</html>

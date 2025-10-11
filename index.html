@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>TabSaver – Save and Restore Tab Sessions</title>
+  <link rel="icon" href="icons/icon.png" />
+  <meta name="description" content="TabSaver is a Chrome extension to save and restore your browser tab sessions. Free, open-source, student-friendly." />
+  <style>
+    :root { --blue:#3b82f6; --gray:#6b7280; --muted:#9ca3af; --card:#0f172a; --border:#1f2a44; --bg:#0b1220; --text:#e5e7eb; }
+    * { box-sizing:border-box; }
+    body { margin:0; font-family:system-ui,-apple-system,Segoe UI,Roboto,Inter,Arial,sans-serif; background:var(--bg); color:var(--text); }
+    .wrap { max-width:980px; margin:0 auto; padding:36px 20px 56px; }
+    header { display:flex; align-items:center; gap:14px; margin-bottom:26px; }
+    header .logo { width:44px; height:44px; border-radius:10px; background:var(--blue); display:grid; place-items:center; box-shadow:0 10px 25px rgba(59,130,246,.25); }
+    header img { width:26px; height:26px; }
+    h1 { margin:0; font-size:30px; letter-spacing:.2px; }
+    .subtitle { color:var(--muted); margin:6px 0 0; }
+    .grid { display:grid; grid-template-columns: 1fr; gap:18px; }
+    @media(min-width:860px){ .grid{ grid-template-columns: 1fr 1fr; } }
+    .card { background:linear-gradient(180deg, rgba(15,23,42,.9), rgba(8,12,24,.9)); border:1px solid var(--border); border-radius:14px; padding:22px; }
+    .btn { display:inline-flex; align-items:center; gap:10px; padding:12px 16px; border-radius:10px; text-decoration:none; color:white; font-weight:700; letter-spacing:.2px; }
+    .btn-primary { background:var(--blue); box-shadow:0 10px 25px rgba(59,130,246,.25); }
+    .btn-primary:hover { filter:brightness(1.08); }
+    .btn-secondary { background:#111a35; color:#cbd5e1; border:1px solid var(--border); }
+    .btn-secondary:hover { filter:brightness(1.08); }
+    ol { margin:0; padding-left:18px; }
+    li { margin:9px 0; color:#cbd5e1; }
+    .muted { color:var(--muted); }
+    .mono { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; background:#0b1430; border:1px solid var(--border); padding:2px 6px; border-radius:6px; color:#d1d5db; }
+    .stack { display:flex; gap:10px; flex-wrap:wrap; margin-top:12px; }
+    .pill { border:1px solid var(--border); border-radius:999px; padding:6px 10px; color:#cbd5e1; font-size:13px; background:#0b1430; }
+    footer { margin-top:28px; color:var(--muted); font-size:13px; text-align:center; }
+    .hero-actions { display:flex; gap:12px; flex-wrap:wrap; margin-top:14px; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div class="logo"><img src="icons/icon.png" alt="TabSaver" /></div>
+      <div>
+        <h1>TabSaver</h1>
+        <p class="subtitle">Save and restore browser tab sessions. Made by <strong>Samonwita</strong>.</p>
+      </div>
+    </header>
+
+    <section class="card" style="margin-bottom:18px;">
+      <h2 style="margin:0 0 8px 0;">Install (Manual, Free)</h2>
+      <p class="muted">This is a Chrome Extension. Install it by loading the unpacked folder or downloading the ZIP.</p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="TabSaver.zip" download>⬇️ Download TabSaver.zip</a>
+        <a class="btn btn-secondary" href="#instructions">View instructions</a>
+        <a class="btn btn-secondary" href="README.md">View README</a>
+      </div>
+      <div class="stack">
+        <span class="pill">Manifest V3</span>
+        <span class="pill">Vanilla JS</span>
+        <span class="pill">Chrome Storage</span>
+        <span class="pill">Dark Mode</span>
+      </div>
+    </section>
+
+    <div class="grid">
+      <section id="instructions" class="card">
+        <h2 style="margin-top:0">How to load in Chrome</h2>
+        <ol>
+          <li>Download <span class="mono">TabSaver.zip</span> and extract it (or use the repo folder directly).</li>
+          <li>Open <span class="mono">chrome://extensions/</span></li>
+          <li>Turn on <span class="mono">Developer mode</span> (top-right).</li>
+          <li>Click <span class="mono">Load unpacked</span> and select the extracted folder.</li>
+          <li>Pin the extension and start saving sessions 🎉</li>
+        </ol>
+      </section>
+      <section class="card">
+        <h2 style="margin-top:0">About</h2>
+        <p class="muted">TabSaver is a Chrome Extension. Netlify (or any static hosting) can host this landing page and provide a downloadable ZIP, but the extension itself runs in Chrome.</p>
+        <p class="muted">To publish like a normal extension, use the Chrome Web Store (requires one-time $5 developer registration).</p>
+      </section>
+    </div>
+
+    <section class="card" style="margin-top:18px;">
+      <h2 style="margin-top:0">Project Contents</h2>
+      <ul class="muted" style="margin:8px 0 0 16px; line-height:1.7;">
+        <li><span class="mono">manifest.json</span> – extension configuration</li>
+        <li><span class="mono">popup.html / popup.css / popup.js</span> – UI and logic</li>
+        <li><span class="mono">background.js</span> – service worker (placeholder)</li>
+        <li><span class="mono">icons/</span> – extension icons</li>
+      </ul>
+    </section>
+
+    <footer>Made by <strong>Samonwita</strong> • <span class="muted">Open-source demo</span></footer>
+  </div>
+</body>
+</html>

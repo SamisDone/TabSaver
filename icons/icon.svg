@@ -1,0 +1,24 @@
+<svg width="128" height="128" viewBox="0 0 128 128" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background gradient -->
+  <defs>
+    <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#3B82F6;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#6366F1;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Rounded rectangle background -->
+  <rect width="128" height="128" rx="24" fill="url(#bgGradient)"/>
+  
+  <!-- Folder icon -->
+  <path d="M32 44C32 40.6863 34.6863 38 38 38H54L60 46H90C93.3137 46 96 48.6863 96 52V84C96 87.3137 93.3137 90 90 90H38C34.6863 90 32 87.3137 32 84V44Z" 
+        fill="white" 
+        opacity="0.9"/>
+  
+  <!-- Save icon overlay -->
+  <path d="M64 58V78M64 78L70 72M64 78L58 72" 
+        stroke="url(#bgGradient)" 
+        stroke-width="4" 
+        stroke-linecap="round" 
+        stroke-linejoin="round"/>
+</svg>
